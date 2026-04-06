@@ -8,11 +8,12 @@ const FranchiseCard = ({ franchise, onViewDetails, onDownloadBrochure, onGetLoca
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             whileHover={{ 
-                y: -8,
+                y: -10,
                 scale: 1.02,
-                boxShadow: "0 20px 40px rgba(255, 107, 0, 0.15)"
+                boxShadow: "0 20px 40px rgba(255, 107, 0, 0.15)",
+                transition: { duration: 0.5, ease: "easeOut" }
             }}
-            className="glass rounded-2xl overflow-hidden border border-orange-500/10 hover:border-orange-500/30 transition-all duration-300 cursor-pointer group"
+            className="glass rounded-2xl overflow-hidden border border-orange-500/10 hover:border-orange-500/30 transition-all duration-500 cursor-pointer group"
             onClick={onViewDetails}
         >
             {/* Image Section */}
@@ -84,9 +85,9 @@ const FranchiseCard = ({ franchise, onViewDetails, onDownloadBrochure, onGetLoca
                             e.stopPropagation();
                             onViewDetails();
                         }}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-medium rounded-xl hover:from-orange-600 hover:to-orange-500 transition-all duration-300 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold rounded-xl hover:from-orange-600 hover:to-orange-500 transition-all duration-300 shadow-md shadow-orange-500/10"
                     >
-                        <HiEye className="text-base" />
+                        <HiEye className="text-sm" />
                         <span>View Details</span>
                     </motion.button>
 

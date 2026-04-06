@@ -78,8 +78,6 @@ export const getProjects = async () => {
 
 export const getProject = async (projectId) => {
     const projectRef = doc(db, 'projects', projectId);
-    const snap = await getDocs(query(collection(db, 'projects'))); // This is inefficient, let's use getDoc
-    // Actually, getDoc is better
     const { getDoc } = await import('firebase/firestore'); 
     const docSnap = await getDoc(projectRef);
     if (docSnap.exists()) {
@@ -113,15 +111,6 @@ export const getTestimonials = async () => {
     return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
-export const getTestimonial = async (testimonialId) => {
-    const { getDoc } = await import('firebase/firestore'); 
-    const testimonialRef = doc(db, 'testimonials', testimonialId);
-    const docSnap = await getDoc(testimonialRef);
-    if (docSnap.exists()) {
-        return { id: docSnap.id, ...docSnap.data() };
-    }
-    return null;
-};
 
 export const addTestimonial = async (testimonialData) => {
     return await addDoc(collection(db, 'testimonials'), {
@@ -154,15 +143,6 @@ export const getFranchises = async () => {
     return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
-export const getFranchise = async (franchiseId) => {
-    const { getDoc } = await import('firebase/firestore'); 
-    const franchiseRef = doc(db, 'franchises', franchiseId);
-    const docSnap = await getDoc(franchiseRef);
-    if (docSnap.exists()) {
-        return { id: docSnap.id, ...docSnap.data() };
-    }
-    return null;
-};
 
 export const addFranchise = async (franchiseData) => {
     return await addDoc(collection(db, 'franchises'), {

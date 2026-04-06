@@ -196,11 +196,11 @@ const Franchises = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="mt-8"
+                            className="mt-6"
                         >
-                            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/20">
-                                <span className="text-2xl font-bold text-white">{franchises.length}+</span>
-                                <span className="text-gray-300">Locations Across India</span>
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/20 shadow-inner">
+                                <span className="text-xl font-bold text-white">{franchises.length}+</span>
+                                <span className="text-gray-400 text-sm">Locations Across India</span>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -211,7 +211,7 @@ const Franchises = () => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
                     >
                         {franchises.map((franchise, index) => (
                             <motion.div key={franchise.id} variants={itemVariants}>
@@ -234,27 +234,27 @@ const Franchises = () => {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="text-center"
                     >
-                        <div className="glass rounded-3xl p-12 border border-orange-500/10 relative overflow-hidden">
+                        <div className="glass rounded-2xl p-8 md:p-10 border border-orange-500/10 relative overflow-hidden max-w-4xl mx-auto">
                             {/* Background Glow */}
                             <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-orange-600/5" />
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-orange-500/10 rounded-full blur-3xl" />
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[240px] h-[240px] bg-orange-500/10 rounded-full blur-3xl" />
                             
                             <div className="relative z-10">
-                                <h3 className="font-display font-bold text-white text-2xl md:text-3xl mb-4">
+                                <h3 className="font-display font-bold text-white text-xl md:text-2xl mb-3">
                                     Want to Partner With Us?
                                 </h3>
-                                <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                                <p className="text-gray-400 text-base mb-6 max-w-xl mx-auto leading-relaxed">
                                     Join our growing network of technology franchises and be part of India's digital transformation journey.
                                 </p>
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => window.location.href = '/contact'}
-                                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+                                    className="group relative inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 transition-all duration-300"
                                 >
                                     <span className="relative z-10">Become a Franchise Partner</span>
-                                    <HiPlus className="relative z-10 text-xl group-hover:rotate-90 transition-transform duration-300" />
-                                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <HiPlus className="relative z-10 text-lg group-hover:rotate-90 transition-transform duration-300" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 </motion.button>
                             </div>
                         </div>

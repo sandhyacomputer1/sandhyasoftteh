@@ -50,6 +50,18 @@ const DemoModal = ({ isOpen, onClose }) => {
         }
     };
 
+    // Scroll Lock
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isOpen]);
+
     const handleClose = () => {
         if (status === 'loading') return;
         setStatus('idle');
@@ -83,7 +95,8 @@ const DemoModal = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ type: 'spring', duration: 0.5, bounce: 0.3 }}
-                        className="relative w-full max-w-2xl bg-[#0A0A0F] border border-orange-500/20 rounded-2xl shadow-[0_0_40px_rgba(255,107,0,0.1)] overflow-hidden"
+                        className="relative w-full max-w-2xl bg-[#0A0A0F] border border-orange-500/20 rounded-2xl shadow-[0_0_40px_rgba(255,107,0,0.1)] overflow-hidden overscroll-contain"
+                        data-lenis-prevent
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between p-6 border-b border-white/5 bg-white/[0.02]">

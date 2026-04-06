@@ -1,28 +1,34 @@
 import { motion } from 'framer-motion';
 import { HiLightningBolt, HiCode, HiChip, HiDatabase, HiCloud } from 'react-icons/hi';
 
-const FloatingIcon = ({ icon: Icon, delay, x, y, size = 'text-2xl', floatRange = 15 }) => (
-    <motion.div
-        animate={{
-            y: [0, -floatRange, 0],
-            rotate: [0, 5, -5, 0],
-        }}
-        transition={{
-            duration: 4 + Math.random() * 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: delay
-        }}
-        className={`absolute ${x} ${y} z-20`}
-    >
-        <div className="relative group cursor-pointer">
-            <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-xl group-hover:bg-orange-500/40 transition-all duration-300" />
-            <div className="relative glass-dark p-4 rounded-full border border-orange-500/30 text-orange-400 group-hover:scale-110 group-hover:border-orange-500/60 transition-all shadow-[0_0_30px_rgba(255,107,0,0.15)] group-hover:shadow-[0_0_40px_rgba(255,107,0,0.3)]">
-                <Icon className={size} />
+import { useState } from 'react';
+
+const FloatingIcon = ({ icon: Icon, delay, x, y, size = 'text-2xl', floatRange = 15 }) => {
+    const [duration] = useState(() => 4 + Math.random() * 2);
+    
+    return (
+        <motion.div
+            animate={{
+                y: [0, -floatRange, 0],
+                rotate: [0, 5, -5, 0],
+            }}
+            transition={{
+                duration: duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: delay
+            }}
+            className={`absolute ${x} ${y} z-20`}
+        >
+            <div className="relative group cursor-pointer">
+                <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-xl group-hover:bg-orange-500/40 transition-all duration-300" />
+                <div className="relative glass-dark p-4 rounded-full border border-orange-500/30 text-orange-400 group-hover:scale-110 group-hover:border-orange-500/60 transition-all shadow-[0_0_30px_rgba(255,107,0,0.15)] group-hover:shadow-[0_0_40px_rgba(255,107,0,0.3)]">
+                    <Icon className={size} />
+                </div>
             </div>
-        </div>
-    </motion.div>
-);
+        </motion.div>
+    );
+};
 
 const HeroIllustration = () => {
     return (

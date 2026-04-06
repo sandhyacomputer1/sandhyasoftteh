@@ -104,7 +104,6 @@ const Portfolio = () => {
                                             className="text-center px-6"
                                         >
                                             <p className="text-white font-bold text-base mb-1">{p.title}</p>
-                                            <p className="text-orange-400 text-xs mb-4">{p.tech}</p>
                                             <button
                                                 onClick={() => navigate(`/portfolio/${p.id}`)}
                                                 className="btn-primary text-xs px-4 py-2 flex items-center gap-1.5 mx-auto hover:-translate-y-1 transition-transform"
@@ -118,7 +117,6 @@ const Portfolio = () => {
                                 <div className="p-5">
                                     <span className="text-xs text-orange-500 font-semibold tracking-widest">{p.category}</span>
                                     <h3 className="font-display font-bold text-white text-base mt-1">{p.title}</h3>
-                                    <p className="text-gray-500 text-xs mt-1">{p.tech}</p>
                                 </div>
                             </motion.div>
                         ))}

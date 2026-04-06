@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaWhatsapp, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
 import { motion } from 'framer-motion';
@@ -10,6 +10,20 @@ const Footer = () => {
     const year = new Date().getFullYear();
     const [showLegalModal, setShowLegalModal] = useState(false);
     const [activeContent, setActiveContent] = useState('privacy');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleHashLink = (e, to) => {
+        if (to.startsWith('/#')) {
+            e.preventDefault();
+            const id = to.replace('/#', '');
+            if (location.pathname !== '/') {
+                navigate(to);
+            } else {
+                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
 
     const quickLinks = [
         { name: 'Home', to: '/' },
@@ -93,6 +107,7 @@ const Footer = () => {
                                     <li key={link.name}>
                                         <Link
                                             to={link.to}
+                                            onClick={(e) => handleHashLink(e, link.to)}
                                             className="text-gray-400 hover:text-orange-500 text-sm transition-colors flex items-center gap-2 group"
                                         >
                                             <span className="w-0 group-hover:w-4 transition-all h-[1px] bg-orange-500 inline-block" />

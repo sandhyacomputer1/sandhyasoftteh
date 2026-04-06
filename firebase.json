@@ -3,25 +3,6 @@
     "rules": "firestore.rules"
   },
   "storage": {
-    "rules": [
-      {
-        "match": {
-          "service": "storage.googleapis.com"
-        },
-        "cors": [
-          {
-            "origin": ["http://localhost:5173", "https://localhost:5173"],
-            "method": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-            "maxAgeSeconds": 3600,
-            "responseHeader": ["Content-Type", "Authorization", "Content-Length", "User-Agent", "X-Requested-With"]
-          },
-          {
-            "origin": ["*"],
-            "method": ["GET"],
-            "maxAgeSeconds": 3600
-          }
-        ]
-      }
-    ]
+    "rules": "storage.rules"
   }
 }

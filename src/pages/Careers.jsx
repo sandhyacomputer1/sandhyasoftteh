@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import SectionTitle from '../components/ui/SectionTitle';
+import SEO from '../components/SEO';
 import { submitJobApplication, submitFutureApplication } from '../firebase/firestore';
 import { uploadResume } from '../firebase/storage';
 import { getJobs } from '../firebase/firestore';
@@ -43,7 +44,7 @@ const benefits = [
 
 const Careers = () => {
     const [jobs, setJobs] = useState([]);
-    const [filteredJobs, setFilteredJobs] = useState([]);
+    const [jobsLoading, setJobsLoading] = useState(true);
     const [form, setForm] = useState({ name: '', email: '', phone: '', position: '', coverLetter: '', resume: null });
     const [futureForm, setFutureForm] = useState({ name: '', email: '', phone: '', role: '', message: '', resume: null });
     const [status, setStatus] = useState('idle');
@@ -77,11 +78,12 @@ const Careers = () => {
                 const jobList = await getJobs();
                 console.log('Jobs fetched:', jobList);
                 setJobs(jobList);
-                setFilteredJobs(jobList);
                 console.log('Jobs state updated:', jobList.length, 'jobs found');
             } catch (err) {
                 console.error('Error fetching jobs:', err);
                 console.error('Full error details:', err.code, err.message);
+            } finally {
+                setJobsLoading(false);
             }
         };
 
@@ -89,7 +91,7 @@ const Careers = () => {
     }, []);
 
     // Filter jobs
-    useEffect(() => {
+    const filteredJobs = useMemo(() => {
         let filtered = jobs;
         if (selectedDept !== 'all') {
             filtered = filtered.filter(job => job.dept === selectedDept);
@@ -100,7 +102,7 @@ const Careers = () => {
                 job.description.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
-        setFilteredJobs(filtered);
+        return filtered;
     }, [jobs, searchTerm, selectedDept]);
 
     const departments = ['all', ...new Set(jobs.map(job => job.dept))];
@@ -183,6 +185,7 @@ const Careers = () => {
 
     return (
         <div className="min-h-screen bg-[#0A0A0F] pt-24">
+            <SEO title="Careers" description="Join our innovative team and build transformative solutions at Sandhya SoftTech." />
             {/* Hero Section */}
             <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden bg-[#0A0A0F] py-12">
                 {/* Video Background - desktop only */}
@@ -392,7 +395,21 @@ const Careers = () => {
 
                     {/* Job Listings Grid */}
                     <div ref={ref} className="flex items-center justify-center min-h-[400px]">
-                        {filteredJobs.length > 0 ? (
+                        {jobsLoading ? (
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+                                {[1, 2, 3].map((i) => (
+                                    <div key={i} className="glass rounded-2xl p-6 border border-orange-500/5 flex flex-col gap-4 animate-pulse">
+                                        <div className="flex justify-between">
+                                            <div className="w-12 h-12 bg-gray-700/50 rounded-xl" />
+                                            <div className="w-20 h-6 bg-gray-700/50 rounded-full" />
+                                        </div>
+                                        <div className="w-3/4 h-5 bg-gray-700/50 rounded" />
+                                        <div className="w-1/2 h-4 bg-gray-700/50 rounded" />
+                                        <div className="w-full h-10 bg-gray-700/50 rounded mt-auto" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : filteredJobs.length > 0 ? (
                             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                                 {filteredJobs.map((job, i) => (
                                     <motion.div
@@ -508,7 +525,7 @@ const Careers = () => {
                                 </button>
                             </div>
 
-                             {status === 'success' ? (
+                            {status === 'success' ? (
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}

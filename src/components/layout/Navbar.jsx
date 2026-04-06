@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import DemoModal from '../ui/DemoModal';
@@ -19,6 +19,7 @@ const Navbar = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [demoOpen, setDemoOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 60);
@@ -35,7 +36,7 @@ const Navbar = () => {
             e.preventDefault();
             const id = to.replace('/#', '');
             if (location.pathname !== '/') {
-                window.location.href = to;
+                navigate(to);
             } else {
                 document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
             }
@@ -66,7 +67,7 @@ const Navbar = () => {
                             />
                             <div className="leading-tight">
                                 <p className="font-display font-bold text-white text-xl tracking-widest block">SANDHYA</p>
-                                <p className="font-display font-bold text-xs tracking-[0.2em] text-gradient block ml-0.5">SOFTTECH PVT LTD</p>
+                                <p className="font-display font-bold text-xs tracking-[0.2em] text-gradient block ml-0.5">SOFTTECH</p>
                             </div>
                         </a>
                     </div>

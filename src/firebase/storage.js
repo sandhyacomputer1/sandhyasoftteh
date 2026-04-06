@@ -29,15 +29,19 @@ export const uploadResume = async (file, applicantName) => {
     }
 };
 
-export const uploadProjectImage = async (file, projectId, type = 'logo') => {
+
+export const uploadAdminFile = async (file, folder, itemName, type = 'asset') => {
     try {
         const timestamp = Date.now();
-        const fileRef = ref(storage, `projects/${projectId}/${type}_${timestamp}_${file.name}`);
+        const sanitizedItemName = itemName.replace(/\s+/g, '_');
+        const fileRef = ref(storage, `${folder}/${sanitizedItemName}/${type}_${timestamp}_${file.name}`);
+        
         const snapshot = await uploadBytes(fileRef, file);
         const downloadURL = await getDownloadURL(snapshot.ref);
+        
         return { downloadURL, path: snapshot.ref.fullPath };
     } catch (error) {
-        console.error('Project image upload error:', error);
+        console.error(`Upload error in ${folder}:`, error);
         throw error;
     }
 };

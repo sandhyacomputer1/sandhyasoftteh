@@ -6,11 +6,10 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(!!auth);
 
     useEffect(() => {
         if (!auth) {
-            setLoading(false);
             return;
         }
         const unsub = onAuthStateChanged(auth, (user) => {
@@ -37,4 +36,5 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);

@@ -8,6 +8,21 @@ import HeroIllustration from '../ui/HeroIllustration';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 
+const StatItem = ({ s, i }) => {
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
+    return (
+        <div ref={ref} className="flex items-center gap-3">
+            <p className="font-display font-bold text-2xl text-gradient">
+                {inView ? (
+                    <CountUp start={0} end={s.end} duration={1.5} suffix={s.suffix} />
+                ) : '0' + s.suffix}
+            </p>
+            <p className="text-gray-500 text-xs leading-tight max-w-[70px]">{s.label}</p>
+            {i < 2 && <div className="w-px h-6 bg-white/10" />}
+        </div>
+    );
+};
+
 const Hero = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [demoOpen, setDemoOpen] = useState(false);
@@ -183,20 +198,9 @@ const Hero = () => {
                                     { label: 'Projects Delivered', end: 30, suffix: '+' },
                                     { label: 'Happy Clients', end: 20, suffix: '+' },
                                     { label: 'Client Satisfaction', end: 100, suffix: '%' },
-                                ].map((s, i) => {
-                                    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
-                                    return (
-                                        <div ref={ref} key={s.label} className="flex items-center gap-3">
-                                            <p className="font-display font-bold text-2xl text-gradient">
-                                                {inView ? (
-                                                    <CountUp start={0} end={s.end} duration={1.5} suffix={s.suffix} />
-                                                ) : '0' + s.suffix}
-                                            </p>
-                                            <p className="text-gray-500 text-xs leading-tight max-w-[70px]">{s.label}</p>
-                                            {i < 2 && <div className="w-px h-6 bg-white/10" />}
-                                        </div>
-                                    );
-                                })}
+                                ].map((s, i) => (
+                                    <StatItem key={s.label} s={s} i={i} />
+                                ))}
                             </div>
 
                         </motion.div>
