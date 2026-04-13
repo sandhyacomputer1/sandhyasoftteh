@@ -46,18 +46,6 @@ const Hero = () => {
 
     return (
         <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0A0F]">
-            {/* Video Background - desktop only */}
-            {!isMobile && (
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover opacity-20"
-                >
-                    <source src="/assets/hero.mp4" type="video/mp4" />
-                </video>
-            )}
 
             {/* Dark overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0F] via-[#0A0A0F]/90 to-[rgba(255,107,0,0.05)] z-[1]" />

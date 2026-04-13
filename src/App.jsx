@@ -89,14 +89,7 @@ const AnimatedRoutes = () => {
   );
 };
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 700);
-    return () => clearTimeout(timer);
-  }, []);
-
+  const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -105,13 +98,9 @@ const App = () => {
             <ScrollProgress />
             <CustomCursor />
             <AnimatePresence mode="wait">
-              {loading ? (
-                <Loader key="loader" />
-              ) : (
-                <motion.div key="app" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
-                  <AnimatedRoutes />
-                </motion.div>
-              )}
+              <motion.div key="app" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+                <AnimatedRoutes />
+              </motion.div>
             </AnimatePresence>
           </SmoothScroll>
         </div>

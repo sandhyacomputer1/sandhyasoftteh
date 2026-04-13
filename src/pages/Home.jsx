@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 
 // Lazy load sections for better performance
-const Hero = lazy(() => import('../components/sections/Hero'));
+import Hero from '../components/sections/Hero';
 const About = lazy(() => import('../components/sections/About'));
 const Services = lazy(() => import('../components/sections/Services'));
 const Industries = lazy(() => import('../components/sections/Industries'));
@@ -21,34 +21,18 @@ const SectionLoader = () => (
 
 const Home = () => (
     <main className="home-page" role="main">
-        <Suspense fallback={<SectionLoader />}>
-            <Hero />
-        </Suspense>
+        <Hero />
         <Suspense fallback={<SectionLoader />}>
             <About />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
             <Services />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
             <Industries />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
             <WhyUs />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
             <Process />
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
             <Stats />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
             <Portfolio />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
             <Testimonials />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
             <Franchises />
         </Suspense>
     </main>
