@@ -57,7 +57,7 @@ const Navbar = () => {
                 <div className="w-full pl-[10px] pr-4 md:pr-8 xl:pr-12 flex items-center h-[70px]">
                     {/* Logo (Left Aligned) */}
                     <div className="flex-1">
-                        <a href="/" className="inline-flex items-center gap-3 group">
+                        <Link to="/" className="inline-flex items-center gap-3 group">
                             <motion.img
                                 src="/navlogo.png"
                                 alt="Sandhya SoftTech"
@@ -69,7 +69,7 @@ const Navbar = () => {
                                 <p className="font-display font-bold text-white text-xl tracking-widest block">SANDHYA</p>
                                 <p className="font-display font-bold text-xs tracking-[0.2em] text-gradient block ml-0.5">SOFTTECH</p>
                             </div>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Links (Centered) */}
