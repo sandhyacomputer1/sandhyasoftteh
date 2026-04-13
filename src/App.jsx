@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AuthProvider } from './context/AuthContext';
 import { logEvent } from 'firebase/analytics';
@@ -98,7 +98,7 @@ const App = () => {
 
   return (
     <AuthProvider>
-      <HashRouter>
+      <BrowserRouter>
         <div className="app" role="application" aria-label="Sandhya SoftTech Website">
           <SmoothScroll>
             <ScrollProgress />
@@ -114,7 +114,7 @@ const App = () => {
             </AnimatePresence>
           </SmoothScroll>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     </AuthProvider>
   );
 };
