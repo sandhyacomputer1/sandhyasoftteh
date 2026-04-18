@@ -46,7 +46,7 @@ const Testimonials = () => {
     // Auto-scroll: 2 seconds on mobile, 5 seconds on desktop
     useEffect(() => {
         if (!inView || isPaused || testimonialSets.length <= 1) return;
-        
+
         const intervalDuration = isMobile ? 2000 : 5000;
         const interval = setInterval(() => {
             setCurrentSet((prev) => (prev + 1) % testimonialSets.length);
@@ -93,9 +93,9 @@ const Testimonials = () => {
         return (
             <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                    <HiStar 
-                        key={i} 
-                        className={`text-lg ${i < rating ? 'text-orange-400 fill-current' : 'text-gray-600'}`} 
+                    <HiStar
+                        key={i}
+                        className={`text-lg ${i < rating ? 'text-orange-400 fill-current' : 'text-gray-600'}`}
                     />
                 ))}
             </div>
@@ -108,7 +108,7 @@ const Testimonials = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                whileHover={{ 
+                whileHover={{
                     y: -5,
                     scale: 1.02,
                     borderColor: "rgba(255, 107, 0, 0.5)"
@@ -120,12 +120,12 @@ const Testimonials = () => {
                     <div className="flex justify-center mb-4">
                         <StarRating rating={testimonial.rating} />
                     </div>
-                    
+
                     {/* Testimonial text */}
                     <p className="text-gray-300 text-sm leading-relaxed mb-4 italic flex-grow">
                         "{testimonial.testimonial}"
                     </p>
-                    
+
                     {/* Name and position */}
                     <div className="border-t border-white/10 pt-4 mt-auto">
                         <h4 className="font-display font-bold text-white text-base mb-1">{testimonial.name}</h4>
@@ -163,7 +163,7 @@ const Testimonials = () => {
                             onMouseLeave={handleMouseLeave}
                         >
                             {currentTestimonials.map((testimonial, index) => (
-                                <TestimonialCard 
+                                <TestimonialCard
                                     key={testimonial.id}
                                     testimonial={testimonial}
                                     index={index}
@@ -181,11 +181,10 @@ const Testimonials = () => {
                             onClick={() => setCurrentSet(index)}
                             whileHover={{ scale: 1.2 }}
                             whileTap={{ scale: 0.8 }}
-                            className={`h-2 rounded-full transition-all duration-300 ${
-                                index === currentSet 
-                                    ? 'bg-orange-500 w-8' 
-                                    : 'bg-gray-600 hover:bg-gray-500 w-2'
-                            }`}
+                            className={`h-2 rounded-full transition-all duration-300 ${index === currentSet
+                                ? 'bg-orange-500 w-8'
+                                : 'bg-gray-600 hover:bg-gray-500 w-2'
+                                }`}
                         />
                     ))}
                 </div>
